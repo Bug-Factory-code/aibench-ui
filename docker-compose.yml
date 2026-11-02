@@ -1,0 +1,19 @@
+services:
+  ui:
+    build: .
+    container_name: aisbench-ui
+    ports:
+      - "8001:8001"
+    environment:
+      # prefix 工具 config.py 的 WORK_PATH（benchmark 仓库目录）
+      - AISBENCH_WORK_PATH=${AISBENCH_WORK_PATH:-}
+      # 容器内 prefix 工具目录（挂载为可写：跑 prefix 任务时会临时改写并还原 config.py）
+      - PREFIX_TOOL_DIR=/work/prefix_tools
+      - AISBENCH_UI_DATASET_DIRS=${AISBENCH_UI_DATASET_DIRS:-/work/datasets}
+      - AISBENCH_UI_MAX_PARALLEL=${AISBENCH_UI_MAX_PARALLEL:-2}
+    volumes:
+      - ./data:/app/data
+      - ${PREFIX_TOOL_DIR:-./aisbench/aisbench_auto_tools_prefix}:/work/prefix_tools
+      - ${AISBENCH_UI_DATASET_DIRS:-./data/datasets}:/work/datasets
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

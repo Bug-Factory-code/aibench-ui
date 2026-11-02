@@ -1,0 +1,35 @@
+# 运行时数据（任务库/输出/token/日志/静态资源）—— 绝不入库
+data/
+nohup.out
+*.log
+
+# 前端
+frontend/node_modules/
+frontend/dist/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# 内置上游 aisbench（只保留运行所需；历史/重资源不入库）
+aisbench/benchmark/.git/
+aisbench/benchmark/.github/
+aisbench/benchmark/img/
+aisbench/benchmark/docs/
+aisbench/benchmark/tests/
+aisbench/benchmark/smoke_tests/
+aisbench/benchmark/docker/
+aisbench/benchmark/tools/
+aisbench/benchmark/plugin_examples/
+aisbench/aisbench_auto_tools_prefix/.git/
+aisbench/aisbench_auto_tools_prefix/tmp/
+aisbench/aisbench_auto_tools_prefix/*.log
+aisbench/aisbench_auto_tools_prefix/aisbench_result.csv
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+aisbench/aisbench_auto_tools_prefix/temp_api.py
+aisbench/aisbench_auto_tools_prefix/picked_ids.txt
